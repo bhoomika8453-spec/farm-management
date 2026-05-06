@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/frontend/styles.css">
+</head>
+<body>
+<div class="page-shell">
+    <header class="topbar">
+        <div class="brand">Farm Manager</div>
+        <div class="topnav">
+            <span class="badge">Admin Dashboard</span>
+            <span class="badge-soft">Manage farmers & crops</span>
+        </div>
+    </header>
+
+    <section class="page-intro">
+        <div>
+            <h1>Admin Control Center</h1>
+            <p>Quickly add farmers, list crops, and manage inventory from a clean agricultural dashboard.</p>
+        </div>
+    </section>
+
+    <div class="grid grid-2">
+        <div class="card">
+            <div class="section-title"><h2>Add Farmer</h2></div>
+            <form id="farmerForm">
+                <div class="form-group">
+                    <label for="farmer_name">Farmer Name</label>
+                    <input type="text" id="farmer_name" placeholder="Enter farmer name" required>
+                </div>
+                <button type="submit" class="button button-primary">Add Farmer</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="section-title"><h2>Add Crop</h2></div>
+            <form id="cropForm">
+                <div class="form-group">
+                    <label for="crop_name">Crop Name</label>
+                    <input type="text" id="crop_name" placeholder="Enter crop name" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" placeholder="Enter quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" placeholder="Enter price" required>
+                </div>
+                <div class="form-group">
+                    <label for="farmer_id">Assign Farmer</label>
+                    <select id="farmer_id" required>
+                        <option value="">Select Farmer</option>
+                    </select>
+                </div>
+                <button type="submit" class="button button-primary">Add Crop</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="section-title"><h2>Farmers List</h2></div>
+            <div id="farmerList" class="list-grid"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title"><h2>Crop Inventory</h2></div>
+            <div id="cropList" class="list-grid"></div>
+        </div>
+    </div>
+</div>
+<script src="/frontend/admin.js"></script>
+</body>
+</html>
