@@ -191,6 +191,42 @@ def delete_crop(crop_id: int):
     return {"message": "Crop deleted"}
 
 # =============================
+# UPDATE CROP
+# =============================
+
+@app.put("/update-crop/{crop_id}")
+async def update_crop(crop_id: int, request: Request):
+
+    data = await request.json()
+
+    crop_name = data.get("crop_name")
+    quantity = data.get("quantity")
+    price = data.get("price")
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        UPDATE crops
+        SET crop_name=%s,
+            quantity=%s,
+            price=%s
+        WHERE id=%s
+    """, (
+        crop_name,
+        quantity,
+        price,
+        crop_id
+    ))
+
+    db.commit()
+
+    return {"message": "Crop updated"}
+# =============================
+# ADD TO CART
+# =============================
+
+# =============================
 # ADD TO CART
 # =============================
 
@@ -201,37 +237,87 @@ async def add_to_cart(request: Request):
 
     crop_id = data.get("crop_id")
 
+    quantity = int(data.get("quantity"))
+
+    phone = data.get("phone")
+
     db = get_db()
+
     cursor = db.cursor()
 
     # GET CROP DETAILS
 
     cursor.execute(
-        "SELECT crop_name, quantity, price FROM crops WHERE id=%s",
+        """
+        SELECT
+            crop_name,
+            quantity,
+            price
+        FROM crops
+        WHERE id=%s
+        """,
         (crop_id,)
     )
 
     crop = cursor.fetchone()
 
+    # CHECK STOCK
+
+    available_quantity = crop[1]
+
+    if quantity > available_quantity:
+
+        return {
+            "message": "Not enough stock available"
+        }
+
     crop_name = crop[0]
-    quantity = crop[1]
+
     price = crop[2]
+
+    total_price = quantity * float(price)
 
     # INSERT INTO CART
 
     cursor.execute(
         """
         INSERT INTO cart
-        (username, crop_name, quantity, price)
+        (
+            username,
+            crop_name,
+            quantity,
+            price
+        )
 
         VALUES (%s, %s, %s, %s)
         """,
-        ("user1", crop_name, quantity, price)
+        (
+            "user1",
+            crop_name,
+            quantity,
+            total_price
+        )
+    )
+
+    # UPDATE STOCK
+
+    cursor.execute(
+        """
+        UPDATE crops
+        SET quantity = quantity - %s
+        WHERE id = %s
+        """,
+        (
+            quantity,
+            crop_id
+        )
     )
 
     db.commit()
 
-    return {"message": "Added to cart"}
+    return {
+        "message": "Crop added to cart successfully"
+    }
 
 # =============================
 # GET CART
@@ -256,6 +342,44 @@ def get_cart():
     return cursor.fetchall()
 
     return cursor.fetchall()
+
+# =============================
+# GET EXPENSES
+# =============================
+
+@app.get("/expenses")
+def get_expenses():
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        SELECT * FROM expenses
+    """)
+
+    return cursor.fetchall()
+
+
+# =============================
+# DELETE EXPENSE
+# =============================
+
+@app.delete("/delete-expense/{expense_id}")
+def delete_expense(expense_id: int):
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        DELETE FROM expenses
+        WHERE id=%s
+    """, (
+        expense_id,
+    ))
+
+    db.commit()
+
+    return {"message": "Expense deleted"}
 # =============================
 # PLACE ORDER
 # =============================
@@ -336,6 +460,71 @@ def get_orders():
 
     return cursor.fetchall()
 
+# =============================
+# ADD EXPENSE
+# =============================
+
+@app.post("/add-expense")
+def add_expense(
+    expense_name: str = Form(...),
+    amount: float = Form(...)
+):
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        INSERT INTO expenses
+        (expense_name, amount)
+
+        VALUES (%s, %s)
+    """, (
+        expense_name,
+        amount
+    ))
+
+    db.commit()
+
+    return {"message": "Expense added"}
+
+
+# =============================
+# GET EXPENSES
+# =============================
+
+@app.get("/expenses")
+def get_expenses():
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        SELECT * FROM expenses
+    """)
+
+    return cursor.fetchall()
+
+
+# =============================
+# DELETE EXPENSE
+# =============================
+
+@app.delete("/delete-expense/{expense_id}")
+def delete_expense(expense_id: int):
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        DELETE FROM expenses
+        WHERE id=%s
+    """, (
+        expense_id,
+    ))
+
+    db.commit()
+
+    return {"message": "Expense deleted"}
 
 if __name__ == "__main__":
     import uvicorn

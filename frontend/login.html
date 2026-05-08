@@ -1,34 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Farm Management Login</title>
+
     <link rel="stylesheet" href="/frontend/styles.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            background-image:
+
+            linear-gradient(
+                rgba(0,0,0,0.45),
+                rgba(0,0,0,0.45)
+            ),
+
+            url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1974&auto=format&fit=crop');
+
+            background-size:cover;
+            background-position:center;
+        }
+
+        .main-container{
+
+            width:90%;
+            max-width:1400px;
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            gap:60px;
+        }
+
+        /* ===================== */
+        /* LEFT SIDE */
+        /* ===================== */
+
+        .left-section{
+
+            width:50%;
+
+            color:white;
+        }
+
+        .small-title{
+
+            color:#7CFC00;
+
+            letter-spacing:5px;
+
+            font-size:20px;
+
+            margin-bottom:25px;
+        }
+
+        .main-title{
+
+            font-size:95px;
+
+            font-weight:bold;
+
+            line-height:0.95;
+
+            margin-bottom:30px;
+
+            text-shadow:0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .tech-stack{
+
+            display:flex;
+
+            flex-wrap:wrap;
+
+            gap:25px;
+
+            font-size:24px;
+
+            font-weight:bold;
+        }
+
+        /* ===================== */
+        /* LOGIN CARD */
+        /* ===================== */
+
+        .login-card{
+
+            width:430px;
+
+            background:rgba(255,255,255,0.12);
+
+            backdrop-filter:blur(12px);
+
+            padding:45px;
+
+            border-radius:25px;
+
+            color:white;
+
+            box-shadow:0 8px 30px rgba(0,0,0,0.35);
+        }
+
+        .login-card h1{
+
+            font-size:48px;
+
+            margin-bottom:12px;
+        }
+
+        .login-card p{
+
+            color:#f1f1f1;
+
+            margin-bottom:30px;
+
+            line-height:1.6;
+        }
+
+        .form-group{
+
+            margin-bottom:22px;
+        }
+
+        .form-group label{
+
+            display:block;
+
+            margin-bottom:10px;
+
+            font-size:18px;
+        }
+
+        .form-group input{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+
+            border-radius:14px;
+
+            font-size:16px;
+
+            outline:none;
+        }
+
+        .login-btn{
+
+            width:100%;
+
+            background:#2e8b57;
+
+            color:white;
+
+            border:none;
+
+            padding:16px;
+
+            border-radius:14px;
+
+            font-size:18px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .login-btn:hover{
+
+            background:#1f6d45;
+
+            transform:scale(1.02);
+        }
+
+        .register-link{
+
+            margin-top:25px;
+
+            text-align:center;
+        }
+
+        .register-link a{
+
+            color:#7CFC00;
+
+            text-decoration:none;
+
+            font-weight:bold;
+
+            font-size:17px;
+        }
+
+        .register-link a:hover{
+
+            text-decoration:underline;
+        }
+
+        /* ===================== */
+        /* MOBILE */
+        /* ===================== */
+
+        @media(max-width:900px){
+
+            .main-container{
+
+                flex-direction:column;
+
+                text-align:center;
+
+                padding:30px 0;
+            }
+
+            .left-section{
+
+                width:100%;
+            }
+
+            .main-title{
+
+                font-size:65px;
+            }
+
+            .tech-stack{
+
+                justify-content:center;
+            }
+
+            .login-card{
+
+                width:95%;
+            }
+        }
+
+    </style>
+
 </head>
+
 <body>
-<div class="auth-shell">
-    <div class="auth-card">
+
+<div class="main-container">
+
+    <!-- ===================== -->
+    <!-- LEFT SECTION -->
+    <!-- ===================== -->
+
+    <div class="left-section">
+
+        <div class="small-title">
+            DBMS MINI PROJECT
+        </div>
+
+        <div class="main-title">
+
+            Farm <br>
+            Management <br>
+            System
+
+        </div>
+
+        <div class="tech-stack">
+
+            <span>Python</span>
+
+            <span>FastAPI</span>
+
+            <span>MySQL</span>
+
+            <span>HTML</span>
+
+            <span>CSS</span>
+
+            <span>JavaScript</span>
+
+        </div>
+
+    </div>
+
+    <!-- ===================== -->
+    <!-- LOGIN CARD -->
+    <!-- ===================== -->
+
+    <div class="login-card">
+
         <h1>Welcome Back</h1>
-        <p>Sign in to manage farm listings, orders, and inventory through the dashboard.</p>
+
+        <p>
+            Sign in to manage crops,
+            farmers, orders and inventory
+            using the farm dashboard.
+        </p>
 
         <form id="loginForm">
+
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email" required>
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter Email"
+                    required
+                >
+
             </div>
+
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Password" required>
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter Password"
+                    required
+                >
+
             </div>
-            <div class="auth-actions">
-                <a href="/register" class="link-button">Create account</a>
-                <button type="submit" class="button button-primary">Login</button>
-            </div>
+
+            <button
+                type="submit"
+                class="login-btn"
+            >
+                Login
+            </button>
+
         </form>
-        <p class="footer-note">A modern farm management portal for buyers and admins.</p>
+
+        <div class="register-link">
+
+            <a href="/register">
+                Create account
+            </a>
+
+        </div>
+
     </div>
+
 </div>
+
 <script src="/frontend/login.js"></script>
+
 </body>
 </html>

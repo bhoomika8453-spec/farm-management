@@ -98,7 +98,6 @@ CREATE TABLE IF NOT EXISTS orders (
     ON DELETE CASCADE
 );
 
-
 -- =============================
 -- DEFAULT ADMIN
 -- =============================
