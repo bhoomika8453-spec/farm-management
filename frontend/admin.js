@@ -497,7 +497,117 @@ function showPopup(message, type) {
     }, 2500);
 }
 
+// =======================
+// ADD WORKER
+// =======================
 
+document.getElementById("workerForm")
+.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const formData = new URLSearchParams();
+
+    formData.append(
+        "worker_name",
+        document.getElementById("worker_name").value
+    );
+
+    formData.append(
+        "work_type",
+        document.getElementById("work_type").value
+    );
+
+    formData.append(
+        "salary",
+        document.getElementById("salary").value
+    );
+
+    const response = await fetch("/add-worker", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type":
+            "application/x-www-form-urlencoded"
+        },
+
+        body: formData
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    document.getElementById("workerForm").reset();
+
+    loadWorkers();
+});
+
+
+// =======================
+// LOAD WORKERS
+// =======================
+
+async function loadWorkers() {
+
+    const response = await fetch("/workers");
+
+    const workers = await response.json();
+
+    const workerList =
+        document.getElementById("workerList");
+
+    workerList.innerHTML = "";
+
+    workers.forEach(worker => {
+
+        workerList.innerHTML += `
+
+        <div class="card-item">
+
+            <h3>${worker[1]}</h3>
+
+            <p>
+                Work Type:
+                ${worker[2]}
+            </p>
+
+            <p>
+                Salary:
+                ₹${worker[3]}
+            </p>
+
+            <div class="card-actions">
+
+                <button
+                    class="button button-secondary"
+                    onclick="deleteWorker(${worker[0]})"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+        `;
+    });
+}
+
+
+// =======================
+// DELETE WORKER
+// =======================
+
+async function deleteWorker(id) {
+
+    await fetch(`/delete-worker/${id}`, {
+
+        method: "DELETE"
+    });
+
+    loadWorkers();
+}
 // =======================
 // AUTO LOAD
 // =======================
@@ -507,3 +617,5 @@ loadFarmers();
 loadCrops();
 
 loadExpenses();
+
+loadWorkers();

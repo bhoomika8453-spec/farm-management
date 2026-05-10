@@ -347,6 +347,53 @@
     </div>
 
 </div>
+<!-- ========================= -->
+<!-- WORKERS -->
+<!-- ========================= -->
+
+<div class="card">
+
+    <div class="section-title">
+        <h2>Workers Management</h2>
+    </div>
+
+    <form id="workerForm" class="dashboard-form">
+
+        <input
+            type="text"
+            id="worker_name"
+            placeholder="Worker Name"
+            required
+        >
+
+        <input
+            type="text"
+            id="work_type"
+            placeholder="Work Type"
+            required
+        >
+
+        <input
+            type="number"
+            id="salary"
+            placeholder="Salary"
+            required
+        >
+
+        <button
+            type="submit"
+            class="button button-primary"
+        >
+            Add Worker
+        </button>
+
+    </form>
+
+    <br>
+
+    <div id="workerList" class="list-grid"></div>
+
+</div>
 
 <script src="/frontend/admin.js"></script>
 

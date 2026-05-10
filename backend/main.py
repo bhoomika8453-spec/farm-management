@@ -380,6 +380,72 @@ def delete_expense(expense_id: int):
     db.commit()
 
     return {"message": "Expense deleted"}
+
+# =============================
+# ADD WORKER
+# =============================
+
+@app.post("/add-worker")
+def add_worker(
+    worker_name: str = Form(...),
+    work_type: str = Form(...),
+    salary: int = Form(...)
+):
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO workers
+        (worker_name, work_type, salary)
+
+        VALUES (%s, %s, %s)
+        """,
+        (worker_name, work_type, salary)
+    )
+
+    db.commit()
+
+    return {"message": "Worker added successfully"}
+
+
+# =============================
+# GET WORKERS
+# =============================
+
+@app.get("/workers")
+def get_workers():
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        SELECT * FROM workers
+    """)
+
+    return cursor.fetchall()
+
+
+# =============================
+# DELETE WORKER
+# =============================
+
+@app.delete("/delete-worker/{worker_id}")
+def delete_worker(worker_id: int):
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute(
+        "DELETE FROM workers WHERE id=%s",
+        (worker_id,)
+    )
+
+    db.commit()
+
+    return {"message": "Worker deleted"}
+
 # =============================
 # PLACE ORDER
 # =============================
