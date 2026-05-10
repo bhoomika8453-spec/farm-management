@@ -210,23 +210,6 @@ admin_dashboard.html
 user_dashboard.html
 
 
-
----
-
-📸 Screenshots
-
-Login Page
-
-Admin Dashboard
-
-User Dashboard
-
-Cart System
-
-
-(Add screenshots here)
-
-
 ---
 
 📚 DBMS Concepts Used
