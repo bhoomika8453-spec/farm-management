@@ -1,171 +1,277 @@
-# Farm Management System
+Farm Management System
 
 A CRUD-based Farm Management System developed using FastAPI, MySQL, HTML, CSS, and JavaScript.
 
+📌 Project Overview
+
 This project helps manage farmers, crops, cart operations, and order placement through Admin and User dashboards.
 
----
+The system provides:
 
-# Features
+Farmer management
 
-## Authentication
-- User Registration
-- User Login
-- Admin Login
+Crop management
 
----
+Crop purchasing system
 
-## Admin Dashboard
-- Add Farmers
-- View Farmers
-- Delete Farmers
-- Add Crops
-- View Crops
-- Delete Crops
+Cart functionality
+
+Order placement
+
+Attractive frontend dashboard
+
+
 
 ---
 
-## User Dashboard
-- View Available Crops
-- View Farmer Details
-- Buy Crops
-- Add to Cart
-- Place Orders
+🚀 Features
+
+Admin Module
+
+Add farmers
+
+Delete farmers
+
+Add crops
+
+Manage crop details
+
+View all records
+
+
+User Module
+
+View available crops
+
+Add items to cart
+
+Select quantity
+
+Place orders
+
+Real-time cart updates
+
+
 
 ---
 
-# Technologies Used
+🛠 Technologies Used
 
-## Frontend
-- HTML
-- CSS
-- JavaScript
+Frontend
 
-## Backend
-- Python
-- FastAPI
+HTML
 
-## Database
-- MySQL
+CSS
 
-## Tools
-- VS Code
-- Uvicorn
+JavaScript
+
+
+Backend
+
+Python
+
+FastAPI
+
+
+Database
+
+MySQL
+
+
 
 ---
 
-# Project Structure
+📂 Project Structure
 
-FARM2_MANAGEMENT/
-
+farm-management/
 │
-
 ├── backend/
-
-│   ├── main.py
-
-│   ├── database.py
-
-│   └── config.py
-
+│   └── main.py
 │
-
-├── database/
-
-│   └── setup.sql
-
-│
-
 ├── frontend/
-
-│   ├── admin_dashboard.html
-
-│   ├── user_dashboard.html
-
 │   ├── login.html
-
 │   ├── register.html
-
+│   ├── admin_dashboard.html
+│   ├── user_dashboard.html
+│   ├── styles.css
 │   ├── admin.js
-
-│   ├── user.js
-
-│   ├── login.js
-
-│   └── register.js
-
+│   └── user.js
 │
-
-├── requirements.txt
-
+├── database/
+│   └── setup.sql
+│
 └── README.md
 
----
-
-# Database Tables
-
-## users
-Stores user login details.
-
-| Column | Type |
-|---|---|
-| id | INT |
-| email | VARCHAR |
-| password | VARCHAR |
-| role | VARCHAR |
 
 ---
 
-## farmers
-Stores farmer information.
+🧩 CRUD Operations
 
-| Column | Type |
-|---|---|
-| id | INT |
-| name | VARCHAR |
+The project performs complete CRUD operations:
 
----
+Create → Add farmers and crops
 
-## crops
-Stores crop details.
+Read → Display crop and farmer data
 
-| Column | Type |
-|---|---|
-| id | INT |
-| crop_name | VARCHAR |
-| quantity | INT |
-| price | FLOAT |
-| farmer_id | INT |
+Update → Modify crop information
+
+Delete → Remove farmers/crops
+
+
 
 ---
 
-## cart
-Stores cart items selected by users.
+🗄 Database Tables
 
-| Column | Type |
-|---|---|
-| id | INT |
-| crop_name | VARCHAR |
-| quantity | INT |
-| username | VARCHAR |
+Farmers Table
+
+Farmer ID
+
+Farmer Name
+
+
+Crops Table
+
+Crop ID
+
+Crop Name
+
+Price
+
+Quantity
+
+Farmer ID
+
+
+Orders Table
+
+Order ID
+
+User Name
+
+Crop Name
+
+Quantity
+
+Total Price
+
+
 
 ---
 
-## orders
-Stores placed orders.
+🔗 Frontend & Backend Connection
 
-| Column | Type |
-|---|---|
-| id | INT |
-| crop_name | VARCHAR |
-| quantity | INT |
-| username | VARCHAR |
+The frontend communicates with the backend using:
+
+JavaScript Fetch API
+
+FastAPI REST APIs
+
+JSON data exchange
+
+
 
 ---
 
-# Installation Steps
+🎨 UI Features
 
-## 1. Clone the Project
+Glassmorphism design
 
-```bash
-git clone <repository-link>
+Responsive layout
+
+Slideshow login page
+
+Attractive dashboard
+
+Interactive cart system
+
+
+
+---
+
+▶️ How to Run the Project
+
+Step 1: Install Requirements
+
+pip install fastapi uvicorn mysql-connector-python
+
+Step 2: Run Backend
+
+uvicorn main:app --reload
+
+Step 3: Open Frontend
+
+Open:
+
+login.html
+
+admin_dashboard.html
+
+user_dashboard.html
+
+
+
+---
+
+📸 Screenshots
+
+Login Page
+
+Admin Dashboard
+
+User Dashboard
+
+Cart System
+
+
+(Add screenshots here)
+
+
+---
+
+📚 DBMS Concepts Used
+
+ER Diagram
+
+Relational Schema
+
+SQL Queries
+
+Primary & Foreign Keys
+
+Normalization
+
+CRUD Operations
+
+
+
+---
+
+📈 Future Scope
+
+Online payment integration
+
+AI-based crop recommendation
+
+Weather prediction
+
+Mobile application support
+
+Multi-user authentication
+
+
+
+
+---
+
+📖 References
+
+Python Documentation
+
+FastAPI Documentation
+
+MySQL Documentation
+
+MDN Web Docs
+
+W3Schools
